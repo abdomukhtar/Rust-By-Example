@@ -72,3 +72,28 @@ fn main() {
         }
     }
 }
+
+//===================================================
+//--------------------------------------------------|
+//===================================================
+enum Signal {
+    // هنا نكتب نوع البيانات الذي سيحمله الـ Variant
+    Variant(String),
+
+    Variant1,
+    Variant2,
+}
+
+fn main() {
+    // هنا ننشئ متغيرًا ونضع بداخله قيمة من نوع Signal
+    let anything = Signal::Variant(String::from("Go"));
+
+    match anything {
+        // هنا نكتب متغيرًا جديدًا سيحمل القيمة الموجودة داخل Variant
+        Signal::Variant(variable) => println!("{}", variable),
+
+        Signal::Variant1 => println!("It's a 2nd"),
+
+        Signal::Variant2 => println!("It's a 3rd"),
+    }
+}
