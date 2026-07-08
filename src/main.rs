@@ -1,6 +1,6 @@
 #[derive(Debug)]
 enum Message {
-    // 1- Variant بدون بيانات
+    // 1- Variant without Data
     Empty,
 
     // 2- Tuple Variant
@@ -77,7 +77,7 @@ fn main() {
 //------------------------------------------------------------------------|
 //=========================================================================
 enum Signal {
-    // هنا نكتب نوع البيانات الذي سيحمله الـ Variant
+    // Here we write the Data-type of Variant.
     Variant(String),
 
     Variant1,
@@ -85,11 +85,11 @@ enum Signal {
 }
 
 fn main() {
-    // هنا ننشئ متغيرًا ونضع بداخله قيمة من نوع Signal
+    // Create variable and but Value in it.
     let anything = Signal::Variant(String::from("Go"));
 
     match anything {
-        // هنا نكتب متغيرًا جديدًا سيحمل القيمة الموجودة داخل Variant
+        // Here we write a new var which will take Variant.
         Signal::Variant(variable) => println!("{}", variable),
 
         Signal::Variant1 => println!("It's a 2nd"),
@@ -99,7 +99,7 @@ fn main() {
 }
 
 //=========================================================================
-//------------------------------------------------------------------------|
+//----------------------------| Result |----------------------------------|
 //=========================================================================
 
 fn main() {
@@ -121,52 +121,52 @@ fn main() {
 //=========================================================================
 
 
-// تعريف النوع (موجود أصلًا في Rust)
+// already have built in Rust
 enum Result<T, E> {
     Ok(T),
     Err(E),
 }
 
-// إنشاء قيمة
+// Create Value
 let value = Ok(data);
-// أو
+// or
 let value = Err(error);
 
-// فتح القيمة
+// Open the Value
 match value {
     Ok(success_data) => {
-        // استخدم بيانات النجاح
+        // use success data
     }
 
     Err(error_data) => {
-        // استخدم بيانات الخطأ
+        // use error data
     }
 }
-//=================================================================================================
-// fn login() -> Result<User, String> { }   هذه الدالة قد تعيد User إذا نجحت، أو String إذا فشلت. |
-//------------------------------------------------------------------------------------------------|
-// Result< Option<User>, DatabaseError>                                                           | 
-//=================================================================================================
+//==========================================+
+// fn login() -> Result<User, String> { }   |
+//------------------------------------------|
+// Result< Option<User>, DatabaseError>     | 
+//==========================================+
 
 fn get_age() -> Result<i32, String> {
     Ok(20)
 }
 
 fn main() {
-    // age نوعه: Result<i32, String>
+    // age-type: Result<i32, String>
     let age = get_age();
 
-    // unwrap يفتح Result
+    // unwrap opens Result
     let value = age.unwrap();
 
-    // value نوعه: i32
+    // value-type: i32
     println!("Age = {}", value);
 }
 //---------------------------------------------------
 
  fn some_function() -> Result<T, E> {
     Ok(...)
-    // أو
+    // or
     Err(...)
 }
 
@@ -181,20 +181,165 @@ fn main() {
 //=========================================================================
 //------------------------------------------------------------------------|
 //=========================================================================
+              fn get_age()
+                    │
+                    ▼
+        Result<i32, String>
+                    │
+                    ▼
+                    ?
+                 (match)
+            ┌──────┴──────┐
+            │             │
+         Ok(20)      Err(error)
+            │             │
+            ▼             ▼
+           20      return Err(error)
+            │
+            ▼
+      let age: i32
 
-                     Result<T, E>
+//===========================================================================
+// 
+/* Stack
+                           let x = Box::new(10);
+┌─────────────────┐
+│ x : Box         │
+│ Pointer ────────┼────────────┐
+└─────────────────┘            │
+                               │
+                               ▼
+                              Heap
+                     ┌────────────┐
+                     │     10     │
+                     └────────────┘
+======================================================================
+{
+    let x = Box::new(10);
+}
+// End of scope.
+// x (Box) dies.
+// Box frees its data in Heap.
 
-                         │
+                Smart Pointers
 
-                         ▼
+         ┌─────────┼──────────┬──────────┐
+         │         │          │          │
+      String      Vec        Box        Rc / Arc
+---------------------------------------------------------------
+Smart Pointer
 
-                         ?
-                       match
-                         │
-                  ┌──────┴──────┐
-                  │             │
-                Ok(T)       Err(E)
-                  │             │
-                  ▼             ▼
-                يعطي T     return Err(E)
-            
+Pointer
+│
+├── Knows where data is.
+│
+└── Smart Pointer
+    │
+    ├── Knows where data is.
+    └── Manages data life.      
+*/
+=============================================================
+use std::boxed::Box;
+use std::rc::Rc;
+use std::sync::Arc;
+
+fn main() {
+    box_example();
+
+    rc_example();
+
+    arc_example();
+}
+
+//==================================================
+
+fn box_example() {
+
+    // Create Box.
+    let x = Box::new(10);
+
+    // Data is in Heap.
+    // Box is in Stack.
+
+    println!("{}", x);
+
+    // Dereference.
+    // Get the value.
+    println!("{}", *x);
+
+}
+
+// Box
+// One owner.
+// Data is in Heap.
+// Box deletes data when it dies.
+
+//==================================================
+
+fn rc_example() {
+
+    // Create Rc.
+    let a = Rc::new(String::from("Ali"));
+
+    // Do not copy data.
+    // Add one more owner.
+    let b = Rc::clone(&a);
+
+    // New owner.
+    // Not borrowing.
+
+    println!("{}", a);
+    println!("{}", b);
+
+    // Owner count.
+    println!("{}", Rc::strong_count(&a));
+
+}
+
+// Rc
+// Reference Count.
+// Many owners.
+// One Thread.
+
+//==================================================
+
+fn arc_example() {
+
+    // Create Arc.
+    let a = Arc::new(String::from("Ali"));
+
+    // Do not copy data.
+    // Add one more owner.
+    let b = Arc::clone(&a);
+
+    // New owner.
+    // Not borrowing.
+
+    println!("{}", a);
+    println!("{}", b);
+
+    // Owner count.
+    println!("{}", Arc::strong_count(&a));
+
+}
+
+// Arc
+// Atomic Reference Count.
+// Many owners.
+// Many Threads.
+
+//==================================================
+
+// Pointer
+// Hold an address.
+
+// Box
+// One owner.
+
+// Rc
+// Many owners.
+// One Thread.
+
+// Arc
+// Many owners.
+// Many Threads.
