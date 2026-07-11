@@ -1,4 +1,4 @@
-# Rust Basic Methods Cheat Sheet
+# Rust Basic Methods 
 
 A small reference for the most common methods.
 
@@ -6,13 +6,13 @@ A small reference for the most common methods.
 
 ## `Vec<T>` Description:
 
-  `vec.push(value)`     Add one item to the end.
-  `vec.pop()`           Remove the last item.
-  `vec.remove(index)`   Remove one item by index.
-  `vec.len()`           Number of items.
-  `vec.first()`         First item.
-  `vec.last()`          Last item.
-  `vec.iter()`          Read all items.
+-  `vec.push(value)`     Add one item to the end.
+- `vec.pop()`           Remove the last item.
+- `vec.remove(index)`   Remove one item by index.
+- `vec.len()`           Number of items.
+- `vec.first()`         First item.
+- `vec.last()`          Last item.
+- `vec.iter()`          Read all items.
 
 ### Example
 
@@ -56,7 +56,7 @@ let number = "20".parse::<i32>().unwrap();
 
 ------------------------------------------------------------------------
 
-## `Clone`Description :
+## `Clone` Description :
 
   `value.clone()`   Make a new copy.
 
