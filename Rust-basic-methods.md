@@ -4,10 +4,8 @@ A small reference for the most common methods.
 
 ------------------------------------------------------------------------
 
-## `Vec<T>`
+## `Vec<T>` Description:
 
-  Method                Description
-  --------------------- ---------------------------
   `vec.push(value)`     Add one item to the end.
   `vec.pop()`           Remove the last item.
   `vec.remove(index)`   Remove one item by index.
@@ -36,14 +34,12 @@ for item in vec.iter() {
 
 ------------------------------------------------------------------------
 
-## `String`
+## `String` Description:
 
-  Method                   Description
-  ------------------------ ---------------------------------
-  `text.push('A')`         Add one char.
-  `text.push_str("Ali")`   Add one string.
-  `text.trim()`            Remove spaces at start and end.
-  `text.parse::<i32>()`    Change text to another type.
+- `text.push('A')`         Add one char.
+- `text.push_str("Ali")`   Add one string.
+- `text.trim()`            Remove spaces at start and end.
+- `text.parse::<i32>()`    Change text to another type.
 
 ### Example
 
@@ -60,10 +56,8 @@ let number = "20".parse::<i32>().unwrap();
 
 ------------------------------------------------------------------------
 
-## `Clone`
+## `Clone`Description :
 
-  Method            Description
-  ----------------- ------------------
   `value.clone()`   Make a new copy.
 
 ### Example
