@@ -69,25 +69,27 @@ let b = a.clone();
 
 ------------------------------------------------------------------------
 
-## 'iter' 'iter_mut' 'without iter'
+## `iter` `iter_mut` `without iter`
 ```
 // make Borrowing to read items.
 
 for item in vec_name.iter() {
     println!("{:?}", item);
 }```
-````
+```
 // take Ownership from Vec.
 
 for item in vec_name {
     println!("{:?}", item);
-}````
+}
+```
 
-````
+```
 // reads item with &mut
 for item in vec_name.iter_mut() {
     *item += 1; // change values
-}````
+}
+```
 
 
 ------------------------------------------------------------------------
