@@ -12,7 +12,7 @@ A small reference for the most common methods.
 - `vec.len()`           Number of items.
 - `vec.first()`         First item.
 - `vec.last()`          Last item.
-- `vec.iter()`          Read all items.
+- `vec.iter()`          Read all items with Borrow,Doesn't take Ownership.
 
 ### Example
 
@@ -69,6 +69,29 @@ let b = a.clone();
 
 ------------------------------------------------------------------------
 
+## 'iter' 'iter_mut' 'without iter'
+```
+// make Borrowing to read items.
+
+for item in vec_name.iter() {
+    println!("{:?}", item);
+}```
+````
+// take Ownership from Vec.
+
+for item in vec_name {
+    println!("{:?}", item);
+}````
+
+````
+// reads item with &mut
+for item in vec_name.iter_mut() {
+    *item += 1; // change values
+}````
+
+
+------------------------------------------------------------------------
+
 ## Quick Notes
 
 -   `push()` → Add one item.
@@ -78,7 +101,7 @@ let b = a.clone();
 -   `len()` → Number of items.
 -   `first()` → First item.
 -   `last()` → Last item.
--   `iter()` → Read all items.
+-   `iter()` → Read all items without taking Ownership.
 -   `trim()` → Remove spaces.
 -   `parse()` → Change type.
 -   `clone()` → Make a new copy.
