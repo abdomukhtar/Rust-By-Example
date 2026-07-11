@@ -343,3 +343,20 @@ fn arc_example() {
 // Arc
 // Many owners.
 // Many Threads.
+//===================| push('') and push_str("") |==============================
+fn main() {
+    // We make a mutable string. We can change it.
+    let mut my_text = String::from("Roo");
+
+    // "push_str()" adds a full text (a string slice).
+    // Use double quotes "" for text.
+    my_text.push_str("st"); 
+    // Now my_text is "Roost"
+
+    // "push()" adds only ONE letter (a character).
+    // Use single quotes '' for a character.
+    my_text.push('!'); 
+    // Now my_text is "Roost!"
+
+    println!("{}", my_text);
+}
