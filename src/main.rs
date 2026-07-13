@@ -360,3 +360,29 @@ fn main() {
 
     println!("{}", my_text);
 }
+//=========================================================
+//----------------------| Impl |---------------------------|
+//==========================================================
+
+struct Book {
+    price: f32,
+    title: String,
+}
+impl Book {
+    fn print_title(&self) {
+        println!("Title: {}", self.title);
+    }
+    fn print_price(&self) {
+        println!("Price: {}", self.price);
+    }
+}
+
+fn main() {
+    let first_book = Books {
+        price: 9.99,
+        title: String::from("History"),
+    };
+
+    first_book.print_title();
+    first_book.print_price();
+}
