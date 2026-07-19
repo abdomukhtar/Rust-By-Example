@@ -40,6 +40,11 @@ for item in vec.iter() {
 - `text.push_str("Ali")`   Add one string.
 - `text.trim()`            Remove spaces at start and end.
 - `text.parse::<i32>()`    Change text to another type.
+- `text.to_lowercase()`    Change text to small letters.
+- `text.to_uppercase()`    Change text to big letters.
+- `text.to_string()`       Change a value to String type.
+- `text.lines()`           Split text into lines, each line one item.
+- `text.contains("part")`  Check if text has a part inside, gives (true/false).
 
 ### Example
 
@@ -52,6 +57,17 @@ text.push_str(" Rust");
 let clean = text.trim();
 
 let number = "20".parse::<i32>().unwrap();
+```
+``` rust
+let sentence = String::from("I love Rust");
+let found = sentence.contains("Rust"); // true or false .
+let text = String::from("Ali\nOmar\nSara");
+
+let names = text.lines();
+
+// Input: "Ali\nOmar\nSara"
+
+// Output: Ali, Omar, Sara (each on its own line)
 ```
 
 ------------------------------------------------------------------------
