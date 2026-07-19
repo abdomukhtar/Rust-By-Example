@@ -127,3 +127,8 @@ for item in vec_name.iter_mut() {
 -   `trim()` → Remove spaces.
 -   `parse()` → Change type.
 -   `clone()` → Make a new copy.
+-   `text.to_string()` → Change a value to String type.
+-   `text.lines()` → Split text into lines, each line one item.
+-   `text.to_lowercase()` → Change text to small letters.
+-   `text.to_uppercase()` → Change text to big letters.
+-   `text.contains("part")` → Check if text has a part inside, gives (true/false).
