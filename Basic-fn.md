@@ -1,4 +1,4 @@
-# Rust `std::fs` Basic Functions
+# Rust `std::fs` and `std::env` Basic Functions
 
 A small reference for the most common functions.
 
@@ -34,6 +34,8 @@ fs::remove_file("note.txt").unwrap();
 ------------------------------------------------------------------------
 
 # Rust `std::env` Basic Functions
+## `std::env` read the input at the same time that programme start
+##### `std::env` good for CLI
 
 A small reference for the most common functions.
 
@@ -59,8 +61,16 @@ use std::env;
 println!("{:?}", env::current_dir());
 
 let home = env::var("HOME").unwrap();
+let var: Args = env::args();
 ```
-
+```rust
+let args: Vec<String> = env::args().collect();
+```
+```rust
+for arg in env::args() {
+    println!("{}", arg);
+}
+```
 ------------------------------------------------------------------------
 
 # Rust `std::path` Basic Types & Methods
